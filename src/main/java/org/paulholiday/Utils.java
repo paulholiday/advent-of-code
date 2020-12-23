@@ -35,7 +35,24 @@ class Utils {
         } catch (FileNotFoundException e) {
             LOGGER.error("File not found " + filePath, e);
         }
-
         return null;
+    }
+
+    char[][] getMap(List<String> fileContents) {
+
+        char[][] map = new char[fileContents.size()][fileContents.size() * 7];
+
+        for (int i = 0; i < fileContents.size(); i++) {
+            String line = fileContents.get(i);
+            for (int j = 0, k = 0; j < fileContents.size() * 7; j++, k++) {
+                if (k == fileContents.get(0).length()) {
+                    k = 0;
+                }
+                char character = line.charAt(k);
+                map[i][j] = character;
+            }
+        }
+
+        return map;
     }
 }
