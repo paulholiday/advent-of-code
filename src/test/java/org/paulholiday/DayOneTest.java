@@ -9,15 +9,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DayOneTest {
 
-    private Utils utils;
     private DayOne dayOne;
     private List<Integer> fileContents;
 
     @BeforeEach
     void setup() {
-        utils = new Utils();
-        fileContents = utils.getFileContentsByLine("src/main/resources/DayOneInput.txt");
+        Utils utils = new Utils();
+        List<String> stringContents = utils.getFileContentsByLine("src/main/resources/DayOneInput.txt");
         dayOne = new DayOne();
+        fileContents = dayOne.convertToIntegerList(stringContents);
     }
 
     @Test

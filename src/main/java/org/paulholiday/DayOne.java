@@ -1,13 +1,21 @@
 package org.paulholiday;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 public class DayOne {
+
+    List<Integer> convertToIntegerList(List<String> stringList) {
+        List<Integer> integers = new ArrayList<>();
+
+        for (String string : stringList) {
+            integers.add(Integer.parseInt(string));
+        }
+
+        return integers;
+    }
 
     List<Integer> getTwoEntriesThatSumTo2020(List<Integer> inputList) {
 

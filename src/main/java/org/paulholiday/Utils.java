@@ -11,21 +11,15 @@ class Utils {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(Utils.class);
 
-    List<Integer> getFileContentsByLine(String filePath) {
-        List<Integer> fileContentsByLine = new ArrayList<>();
-        InputStream inputStream = null;
+    List<String> getFileContentsByLine(String filePath) {
+        List<String> fileContentsByLine = new ArrayList<>();
 
-        try {
-            inputStream = new FileInputStream(filePath);
-        } catch (FileNotFoundException e) {
-            LOGGER.error("File not found " + filePath, e);
-        }
-
+        InputStream inputStream = getInputStream(filePath);
         if (inputStream != null) {
             try (BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
                 while (reader.ready()) {
                     String line = reader.readLine();
-                    fileContentsByLine.add(Integer.parseInt(line));
+                    fileContentsByLine.add(line);
                 }
             } catch (IOException e) {
                 LOGGER.error("Error reading from file " + filePath, e);
@@ -33,5 +27,15 @@ class Utils {
         }
 
         return fileContentsByLine;
+    }
+
+    InputStream getInputStream(String filePath) {
+        try {
+            return new FileInputStream(filePath);
+        } catch (FileNotFoundException e) {
+            LOGGER.error("File not found " + filePath, e);
+        }
+
+        return null;
     }
 }
