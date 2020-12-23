@@ -26,7 +26,30 @@ public class DayOne {
         return Collections.emptyList();
     }
 
-    Integer multiplyAnswers(Integer answer1, Integer answer2) {
+    List<Integer> getThreeEntriesThatSumTo2020(List<Integer> inputList) {
+
+        for (Integer iterator : inputList) {
+            for (Integer secondIterator : inputList) {
+                for (Integer thirdIterator : inputList) {
+                    if (!iterator.equals(secondIterator) && !iterator.equals(thirdIterator) && !secondIterator.equals(thirdIterator)) {
+                        if ((iterator + secondIterator + thirdIterator) == 2020) {
+                            System.out.println(iterator + " and " + secondIterator + " and " + thirdIterator + " sum to 2020");
+                            return Arrays.asList(iterator, secondIterator, thirdIterator);
+                        }
+                    }
+                }
+            }
+        }
+
+        System.out.println("None of the entries sum together to make 2020");
+        return Collections.emptyList();
+    }
+
+    Integer multiplyTwoAnswers(Integer answer1, Integer answer2) {
         return answer1 * answer2;
+    }
+
+    Integer multiplyThreeAnswers(Integer answer1, Integer answer2, Integer answer3) {
+        return answer1 * answer2 * answer3;
     }
 }
