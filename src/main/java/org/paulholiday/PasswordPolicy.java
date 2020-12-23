@@ -6,9 +6,9 @@ import lombok.Getter;
 @Builder
 public class PasswordPolicy {
     @Getter
-    private int minimumNumberOfOccurrences;
+    private int policyDigit1;
     @Getter
-    private int maximumNumberOfOccurrences;
+    private int policyDigit2;
     @Getter
     private char letter;
     @Getter

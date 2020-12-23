@@ -14,8 +14,8 @@ public class PasswordPolicyParserTest {
         PasswordPolicyParser passwordPolicyParser = new PasswordPolicyParser();
         PasswordPolicy passwordPolicy = passwordPolicyParser.parse(input);
 
-        assertEquals(6, passwordPolicy.getMinimumNumberOfOccurrences());
-        assertEquals(10, passwordPolicy.getMaximumNumberOfOccurrences());
+        assertEquals(6, passwordPolicy.getPolicyDigit1());
+        assertEquals(10, passwordPolicy.getPolicyDigit2());
         assertEquals('p', passwordPolicy.getLetter());
         assertEquals("ctpppjmdpppppp", passwordPolicy.getPassword());
     }
