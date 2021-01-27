@@ -52,4 +52,22 @@ class DayFiveTest {
 
         System.out.println(dayFive.getHighestSeatId(boardingPasses));
     }
+
+    @Test
+    void getOrderedListOfSeatIds() {
+
+        List<Integer> listOfSeatIds = dayFive.getOrderListOfSeatIds(boardingPasses);
+
+        System.out.println(listOfSeatIds);
+        assertEquals(13, listOfSeatIds.get(0));
+        assertEquals(978, listOfSeatIds.get(listOfSeatIds.size()-1));
+    }
+
+    @Test
+    void getMySeatId() {
+
+        System.out.println(dayFive.getMySeatId(boardingPasses));
+        assertEquals(727, dayFive.getMySeatId(boardingPasses));
+
+    }
 }

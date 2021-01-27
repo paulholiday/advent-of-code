@@ -1,6 +1,7 @@
 package org.paulholiday;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -88,5 +89,24 @@ public class DayFive {
         int boundDifference = upperBound - lowerBound;
 
         return (upperBound - Math.floorDiv(boundDifference, 2)) - 1;
+    }
+
+    List<Integer> getOrderListOfSeatIds(List<String> boardingPasses) {
+        return boardingPasses.stream().sorted(Comparator.comparing(this::getSeatId)).map(this::getSeatId).collect(Collectors.toList());
+    }
+
+    int getMySeatId(List<String> boardingPasses) {
+
+        List<Integer> seatIdList = getOrderListOfSeatIds(boardingPasses);
+        int iterator = 13;
+
+        for (Integer seatId : seatIdList) {
+            if (iterator != seatId) {
+                return seatId - 1;
+            }
+            iterator++;
+        }
+
+        return -1;
     }
 }
