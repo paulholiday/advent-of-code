@@ -1,5 +1,6 @@
 package org.paulholiday;
 
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -20,6 +21,33 @@ class Utils {
                 while (reader.ready()) {
                     String line = reader.readLine();
                     fileContentsByLine.add(line);
+                }
+            } catch (IOException e) {
+                LOGGER.error("Error reading from file " + filePath, e);
+            }
+        }
+
+        return fileContentsByLine;
+    }
+
+    List<String> getFileContentsBetweenWhiteSpaces(String filePath) {
+        List<String> fileContentsByLine = new ArrayList<>();
+
+        InputStream inputStream = getInputStream(filePath);
+        if (inputStream != null) {
+            try (BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
+                while (reader.ready()) {
+
+                    String line = reader.readLine();
+                    StringBuilder details = new StringBuilder();
+                    while (StringUtils.isNoneBlank(line)) {
+                        details.append(line + " ");
+                        line = reader.readLine();
+                    }
+
+                    if (StringUtils.isNoneBlank(details.toString())) {
+                        fileContentsByLine.add(details.toString());
+                    }
                 }
             } catch (IOException e) {
                 LOGGER.error("Error reading from file " + filePath, e);
